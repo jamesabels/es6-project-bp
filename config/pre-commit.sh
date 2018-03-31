@@ -22,7 +22,6 @@ done
 # just "cd" there
 # eg.
 # cd folder/with/my-package
-cd ..
 printf "${yellow}Starting Unit Tests for JS Files:${reset}\n"
 # now lets run tests
 # eg.
