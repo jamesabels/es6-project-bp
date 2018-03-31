@@ -4,9 +4,9 @@
   "description": "A boilerplate for building and testing pure ES6 applications",
   "main": "src/main.js",
   "scripts": {
-    "test": "NODE_ENV=test node_modules/.bin/karma start --browsers jsdom",
-    "start": "NODE_ENV=development node node_modules/.bin/webpack-dev-server --mode development --content-base src",
-    "build": "NODE_ENV=production node node_modules/.bin/webpack --mode production && cp -r src/public/* dist/"
+    "test": "cross-env NODE_ENV=test node_modules/.bin/karma start --browsers jsdom",
+    "start": "cross-env NODE_ENV=development node node_modules/.bin/webpack-dev-server --mode development --content-base src",
+    "build": "cross-env NODE_ENV=production node node_modules/.bin/webpack --mode production && cp -r src/public/* dist/"
   },
   "author": "The Perduco Group",
   "license": "MIT",
@@ -17,6 +17,7 @@
     "babel-preset-es2015": "^6.24.1",
     "bdd-lazy-var": "^2.2.3",
     "chai": "^4.1.2",
+    "cross-env": "^5.1.4",
     "jsdom": "^11.6.2",
     "karma": "^2.0.0",
     "karma-chai": "^0.1.0",
@@ -30,6 +31,9 @@
     "webpack-dev-server": "^3.1.1",
     "webpack-node-externals": "^1.6.0"
   },
+  "pre-commit": [
+    "test"
+  ],
   "dependencies": {
     "karma-jsdom-launcher": "^6.1.3"
   }
