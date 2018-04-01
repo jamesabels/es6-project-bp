@@ -9,7 +9,7 @@
     "start": "cross-env NODE_ENV=development node node_modules/.bin/webpack-dev-server --mode development --content-base src",
     "build": "cross-env NODE_ENV=production node node_modules/.bin/webpack --mode production && cp -r src/public/* dist/"
   },
-  "author": "The Perduco Group",
+  "author": "James Abels",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.42",
