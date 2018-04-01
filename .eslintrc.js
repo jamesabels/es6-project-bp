@@ -3,7 +3,6 @@ module.exports = {
         "browser": true,
         "es6": true
     },
-    "eslintIgnore": ["webpack.config.js", "karma.conf.js", 'tests/**/*.js']
     "extends": "eslint:recommended",
     "parserOptions": {
         "sourceType": "module"

@@ -36,6 +36,7 @@
     "webpack-dev-server": "^3.1.1",
     "webpack-node-externals": "^1.6.0"
   },
+  "eslintIgnore": ["webpack.config.js", "karma.conf.js", "test/**/*.js", "dist/"],
   "pre-commit": [
     "test"
   ],

@@ -7,6 +7,6 @@ import helloWorld from '../index';
 
 describe('Hello World', function () {
     it ('Should log the passed Message', function () {
-        expect(helloWorld('Hello World')).to.equal(console.log('Hello World'));
+        expect(helloWorld('Hello World')).to.equal(console.warn('Hello World'));
     });
 });
