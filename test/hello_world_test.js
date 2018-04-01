@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import chai from 'chai';
 import 'chai/register-should';
 import 'chai/register-expect';
