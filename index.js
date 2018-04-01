@@ -1,3 +1,5 @@
-export default function helloWorld (message) {
-    console.warn(message);
-}
+import Hello from './src/classes/Hello';
+
+let hello = new Hello('Hello World!');
+
+hello.render();
