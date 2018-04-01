@@ -1,6 +1,6 @@
 {
   "name": "es6-project-bp",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A boilerplate for building and testing pure ES6 applications",
   "main": "src/main.js",
   "scripts": {
