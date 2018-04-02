@@ -4,11 +4,21 @@ module.exports = function(config) {
     config.set({
         basePath: '.',
         frameworks: ['mocha', 'chai'],
-        browsers : ['jsdom'],
+        browsers : ['ChromeHeadless'],
         jsdomLauncher: {
             jsdom: {
               userAgent: "foobar"
             }
+        },
+        client: {
+          mocha: {
+            // change Karma's debug.html to the mocha web reporter
+            reporter: 'html',
+            // require specific files after Mocha is initialized
+            // require: [path.join(__dirname, "test/env.js")]
+            // custom ui, defined in required file above
+            // ui: 'bdd-lazy-var/global',
+          }
         },
         files: [
             { pattern: 'test/*_test.js', watched: true },
