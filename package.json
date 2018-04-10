@@ -10,7 +10,7 @@
   },
   "scripts": {
     "test:watch": "cross-env NODE_ENV=test node_modules/.bin/mocha --require test/env.js --webpack-config test/webpack-config.test.js --compilers js:babel-core/register --timeout 10000 test/**/*_test.js --watch",
-    "test": "cross-env NODE_ENV=test node_modules/.bin/mocha --require test/env.js --webpack-config test/webpack-config.test.js --compilers js:babel-core/register --timeout 10000 test/**/*_test.js",
+    "test": "cross-env NODE_ENV=test node_modules/.bin/mocha --require test/env.js --webpack-config test/webpack-config.test.js --compilers js:babel-core/register --timeout 10000 test/**/*_test.js --exit",
     "start": "cross-env NODE_ENV=development node node_modules/.bin/webpack-dev-server --mode development --content-base src",
     "build": "cross-env NODE_ENV=production node node_modules/.bin/webpack --mode production && cp -r src/public/* dist/"
   },
