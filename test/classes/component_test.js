@@ -1,6 +1,9 @@
 import chai from 'chai';
 import 'chai/register-should';
 import 'chai/register-expect';
+var Browser = require('zombie');
+
+Browser.localhost('localhost', 9000);
 
 // Import component to test
 import Component from '../../src/classes/Component';
@@ -16,7 +19,7 @@ const model = {
 // Define Markup
 const markup = function () {
     return  `
-    <div class="person">
+    <div id="person" class="person">
         <h1 class="name">${model.name}</h1>
         <h3 class="job">${model.job}</h3>
         <p class="location">${model.location}</p>
@@ -41,9 +44,6 @@ const options = {
 // Create component
 const testComponent = new Component(options);
 
-// Mount Component
-// testComponent.mount(document, body);
-
 describe('Component', function() {
     
     let sandBox;
@@ -51,14 +51,13 @@ describe('Component', function() {
     // Run Before Each Test
     beforeEach(function () {
         // Mount Component
-        // testComponent.mount(document, body);
+        testComponent.mount(document, '#app');
     });
 
     // Run After Each Test
-    // afterEach(function() {
-        // restore the environment as it was before
-        // sandbox.restore();
-    // });
+    afterEach(function() {
+        testComponent.unmount();
+    });
     
     // Write Tests
     describe('create()', function () {
@@ -88,14 +87,19 @@ describe('Component', function() {
             expect(testComponent.render(model)).to.equal(markup(model));
         });
     });
-    
-    // TODO: FIX DOCUMENT BEING NULL IN TESTS
-    // describe('mount()', function() {
-    //     testComponent.mount(document, '#app');
-    //     it('Should add component markup to the dom', function() {
-    //         expect(document.getElementById(`${testComponent.id}`).innerHTML, markup);
-    //     });
-    // });
+
+    describe('mount()', function() { 
+        let browser = new Browser();
+        
+        before(function(done) {
+            browser.visit('/', done);
+        });
+
+        it('Should add component markup to the dom', function() {
+            browser.assert.success();
+            expect(document.querySelector(`#${testComponent.id}`).innerHTML, markup)
+        });
+    });
 
     describe('whenMounted()', function() {
         it('Should execute the when mounted life-cycle method', function() {
@@ -122,14 +126,14 @@ describe('Component', function() {
     });
 
     // TODO: FIX DOCUMENT BEING NULL IN TESTS
-    // describe('unmount()', function() {
-    //     testComponent.unmount();
-    //     it('Should remove component from the dom', function() {
-    //         let component = document.querySelector(`#${options.id}`);
-    //         expect(component, null);
-    //     });
-    //     testComponent.mount(document, '#app');
-    // });
+    describe('unmount()', function() {
+        it('Should remove component from the dom', function() {
+            testComponent.unmount();
+            let component = document.querySelector(`#${options.id}`);
+            expect(component, null);
+            testComponent.mount(document, '#app');
+        });
+    });
 
     describe('whenUnmounted()', function() {
         it('Should execute the when unmounted life-cycle method', function() {

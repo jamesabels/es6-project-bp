@@ -88,7 +88,7 @@ let model = {
             name: 'submit_button',
             initialValue: 'Submit',
             classList: ['universal-form-input']
-        },
+        }
     ]
 };
 

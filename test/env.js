@@ -1,19 +1,28 @@
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 
-function createDocument() {
-  const document = JSDOM(undefined);
-  const window = document.defaultView;
-  global.document = document;
-  global.window = window;
+let dom = {};
+const { window } = new JSDOM(
+  `<!DOCTYPE html>
+    <html>
+      <body>
+        <div id="app">
+        </div>
+      </body>
+    </html>
+  `
+);
+const { document } = window.window;
 
-  Object.keys(window).forEach((key) => {
-    if (!(key in global)) {
-      global[key] = window[key];
-    }
-  });
+dom.window = document.defaultView;
+dom.console = window.console;
 
-  return document;
-}
+Object.keys(document.defaultView).forEach((property) => {
+  if (typeof global[property] === 'undefined') {
+    global[property] = document.defaultView[property];
+  }
+});
 
-export default createDocument;
+global.navigator = {
+  userAgent: 'node.js'
+};
